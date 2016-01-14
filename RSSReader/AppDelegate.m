@@ -7,6 +7,10 @@
 //
 
 #import "AppDelegate.h"
+#import <RestKit/CoreData.h>
+#import <RestKit/RestKit.h>
+#import "RKXMLReaderSerialization.h"
+#import "RKArticleList.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +21,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    RKLogConfigureByName("RestKit/Network", RKLogLevelTrace);
+    //    RKLogConfigureByName("RestKit/ObjectMapping", RKLogLevelDebug);
+    //    RKLogConfigureByName("RestKit/CoreData", RKLogLevelDebug);
+    
+    [RKMIMETypeSerialization registerClass:[RKXMLReaderSerialization class] forMIMEType:@"text/xml"];
+    
     return YES;
 }
 
