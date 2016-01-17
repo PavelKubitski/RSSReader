@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import <RestKit/CoreData.h>
+//#import <RestKit/CoreData.h>
 #import <RestKit/RestKit.h>
 #import "RKXMLReaderSerialization.h"
 #import "RKArticleList.h"

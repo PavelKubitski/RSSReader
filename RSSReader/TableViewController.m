@@ -7,6 +7,7 @@
 //
 
 #import "TableViewController.h"
+#import "ArticleViewController.h"
 
 @interface TableViewController ()
 
@@ -34,7 +35,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    CGRect frameOfView = self.view.frame;
+//    CGRect frameOfView = self.view.frame;
     
 
 }
@@ -79,14 +80,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//    CDPerson* cdPerson = [self.personsFetchedResultsController objectAtIndexPath:indexPath];
-//    DetailViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"DetailViewController"];
-//    
-//    [self.navigationController pushViewController:vc animated:YES];
-//    
-    
-
-    
+  
+    RKArticle *article = [self.articleList.articles objectAtIndex:indexPath.row];
+    ArticleViewController *articleVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ArticleViewController"];
+    [self.navigationController pushViewController:articleVC animated:YES];
+    articleVC.article = article;
 }
 
 
