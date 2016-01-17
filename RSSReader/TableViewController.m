@@ -8,6 +8,7 @@
 
 #import "TableViewController.h"
 #import "ArticleViewController.h"
+#import "CustomTableViewCell.h"
 
 @interface TableViewController ()
 
@@ -18,14 +19,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    CGRect frame = self.tableView.frame;
-//    CGRect frameOfView = self.view.frame;
-//    self.tableView.frame = frameOfView;
-//    CGRect frame2 = self.tableView.frame;
-//    self.tableView.frame = CGRectMake(frameOfView.origin.x, frameOfView.origin.y, frameOfView.size.width, frameOfView.size.height);
     [self prepareForNetwork];
     [self requestData];
     
+
 
     
     
@@ -58,20 +55,22 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"CustomTableViewCell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    CustomTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell = [[CustomTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
     }
     
     //    cell.textLabel.adjustsFontSizeToFitWidth = YES;
     NSString *imageUrl = [((RKArticle*)[self.articleList.articles objectAtIndex:indexPath.row]) imageURL];
-
-    cell.imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageUrl]]];
+    
 
     
-    cell.textLabel.text = [((RKArticle*)[self.articleList.articles objectAtIndex:indexPath.row]) title];
+    cell.image.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageUrl]]];
+
+    
+    cell.titleLabel.text = [((RKArticle*)[self.articleList.articles objectAtIndex:indexPath.row]) title];
 
     return cell;
 }

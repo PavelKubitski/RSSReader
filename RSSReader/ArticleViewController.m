@@ -18,13 +18,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.textField.scrollEnabled = NO;
+    [self.titleLabel setFont:[UIFont boldSystemFontOfSize:20]];
     self.titleLabel.text = self.article.title;
     self.imageView.image =[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.article.imageURL]]];
+    [self.scrollView setScrollEnabled:YES];
 //    [self prepareForNetwork];
 //    [self requestData];
     [self requestDataUsingAFNetworking];
     self.titleLabel.backgroundColor = [UIColor colorWithRed:255.0 green:255.0 blue:255.0 alpha:1.0];
+
     
 }
 
@@ -105,8 +108,6 @@
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     [httpClient registerHTTPOperationClass:[AFHTTPRequestOperation class]];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-
-
         
         TFHpple *parser = [TFHpple hppleWithHTMLData:responseObject];
         NSString *xpath = @"//div[@class='b-posts-1-item__text']/p";
@@ -130,6 +131,9 @@
         }
         [self appendAllTexts:news];
         self.textField.text = self.textOfArticle;
+
+        [self.textField sizeToFit];
+        
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
@@ -142,7 +146,7 @@
     for (News *element in news) {
         if (element.textOfNews) {
             [textOfNew appendString:element.textOfNews];
-            [textOfNew appendString:@"\n"];
+            [textOfNew appendString:@"\n\n"];
         }
 
     }

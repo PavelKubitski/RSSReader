@@ -20,6 +20,7 @@
 		57BED8FB1C4AAF1C004BD722 /* RKNews.m in Sources */ = {isa = PBXBuildFile; fileRef = 57BED8FA1C4AAF1C004BD722 /* RKNews.m */; };
 		57BED8FD1C4B9B65004BD722 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 57BED8FC1C4B9B65004BD722 /* libxml2.dylib */; };
 		57BED9001C4BAE21004BD722 /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = 57BED8FF1C4BAE21004BD722 /* News.m */; };
+		57BED9041C4BE0A8004BD722 /* CustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 57BED9031C4BE0A8004BD722 /* CustomTableViewCell.m */; };
 		CDB472B72EC06C128948C3C5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BDAD74EF08CC8A54B91B021D /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +59,8 @@
 		57BED8FC1C4B9B65004BD722 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = ../libxml2.dylib; sourceTree = "<group>"; };
 		57BED8FE1C4BAE21004BD722 /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = News.h; sourceTree = "<group>"; };
 		57BED8FF1C4BAE21004BD722 /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = News.m; sourceTree = "<group>"; };
+		57BED9021C4BE0A8004BD722 /* CustomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTableViewCell.h; sourceTree = "<group>"; };
+		57BED9031C4BE0A8004BD722 /* CustomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableViewCell.m; sourceTree = "<group>"; };
 		67D8CF257D69B438325214DE /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		BDAD74EF08CC8A54B91B021D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6FF1862A1BF39EEA81EB66B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -120,6 +123,7 @@
 				57BED8F81C4AA9DD004BD722 /* ArticleViewController */,
 				57BED8EA1C47BC52004BD722 /* RKObjects */,
 				57BED9011C4BAE34004BD722 /* News */,
+				57BED9051C4BE0AE004BD722 /* CustomTableViewCell */,
 				57BED8C71C47B83F004BD722 /* Main.storyboard */,
 				57BED8CA1C47B83F004BD722 /* Images.xcassets */,
 				57BED8CC1C47B83F004BD722 /* LaunchScreen.xib */,
@@ -193,6 +197,15 @@
 				57BED8FF1C4BAE21004BD722 /* News.m */,
 			);
 			name = News;
+			sourceTree = "<group>";
+		};
+		57BED9051C4BE0AE004BD722 /* CustomTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				57BED9021C4BE0A8004BD722 /* CustomTableViewCell.h */,
+				57BED9031C4BE0A8004BD722 /* CustomTableViewCell.m */,
+			);
+			name = CustomTableViewCell;
 			sourceTree = "<group>";
 		};
 		8958DFE81E120443DB992262 /* Pods */ = {
@@ -360,6 +373,7 @@
 				57BED8C31C47B83F004BD722 /* AppDelegate.m in Sources */,
 				57BED8FB1C4AAF1C004BD722 /* RKNews.m in Sources */,
 				57BED8C01C47B83F004BD722 /* main.m in Sources */,
+				57BED9041C4BE0A8004BD722 /* CustomTableViewCell.m in Sources */,
 				57BED8E61C47BC26004BD722 /* RKArticleList.m in Sources */,
 				57BED9001C4BAE21004BD722 /* News.m in Sources */,
 				57BED8F71C4AA9CE004BD722 /* ArticleViewController.m in Sources */,
