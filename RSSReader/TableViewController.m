@@ -19,8 +19,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.activityIndicator.center = self.view.center;
+    
     [self prepareForNetwork];
-    [self requestData];
+    
+    
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(queue, ^{
+        [self requestData];
+    });
+    
     
 
 
@@ -115,6 +123,7 @@
 
 - (void)requestData {
     NSString *requestPath = @"/feed";
+    [self.activityIndicator startAnimating];
     [[RKObjectManager sharedManager]
      getObjectsAtPath:requestPath
      parameters:nil
@@ -122,8 +131,14 @@
          
          self.articleList = (RKArticleList*)[mappingResult.array firstObject];
          
-         [self.tableView reloadData];
+
+
+         dispatch_async(dispatch_get_main_queue(), ^{
+             [self.tableView reloadData];
+         });
          
+         
+         [self.activityIndicator stopAnimating];
      }
      failure: ^(RKObjectRequestOperation *operation, NSError *error) {
          RKLogError(@"Load failed with error: %@", error);

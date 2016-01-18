@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *textField;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicatorActivity;
 
 
 @property (strong, nonatomic) RKArticle *article;

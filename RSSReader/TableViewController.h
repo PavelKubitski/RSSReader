@@ -13,7 +13,9 @@
 
 @interface TableViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 @property (strong, nonatomic) RKArticleList *articleList;
 @end
 

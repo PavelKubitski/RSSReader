@@ -33,6 +33,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <activityIndicatorView key="tableFooterView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" id="siH-fD-Yd8">
+                                    <rect key="frame" x="0.0" y="144" width="375" height="37"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    <color key="color" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </activityIndicatorView>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CustomTableViewCell" rowHeight="58" id="VPn-yn-Sdu" customClass="CustomTableViewCell">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -68,7 +73,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="sR7-zB-U3l"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="siH-fD-Yd8" id="6Sd-In-4YR"/>
                         <outlet property="tableView" destination="A3M-Qr-LNI" id="sJ8-a5-DKj"/>
                     </connections>
                 </viewController>
@@ -106,6 +113,11 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" id="Xzk-EG-JBh">
+                                        <rect key="frame" x="189" y="346" width="37" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="color" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    </activityIndicatorView>
                                 </subviews>
                             </scrollView>
                         </subviews>
@@ -114,6 +126,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="imageView" destination="pVB-id-NUc" id="XVC-tJ-InX"/>
+                        <outlet property="indicatorActivity" destination="Xzk-EG-JBh" id="RFB-6x-8Fn"/>
                         <outlet property="scrollView" destination="kjF-HU-IBC" id="cqj-4Y-Yih"/>
                         <outlet property="textField" destination="gm2-3K-Jp4" id="rD4-HP-rBY"/>
                         <outlet property="titleLabel" destination="kPO-Q8-OqY" id="4hy-Ot-p8C"/>

@@ -10,6 +10,9 @@
 #import "TFHpple.h"
 #import "News.h"
 
+#define OFFSET 25
+
+
 @interface ArticleViewController ()
 
 @end
@@ -23,30 +26,41 @@
     self.titleLabel.text = self.article.title;
     self.imageView.image =[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.article.imageURL]]];
     [self.scrollView setScrollEnabled:YES];
+
 //    [self prepareForNetwork];
 //    [self requestData];
-    [self requestDataUsingAFNetworking];
-    self.titleLabel.backgroundColor = [UIColor colorWithRed:255.0 green:255.0 blue:255.0 alpha:1.0];
-
     
+    
+    
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(queue, ^{
+        [self requestDataUsingAFNetworking];
+    });
+
+    self.titleLabel.backgroundColor = [UIColor colorWithRed:255.0 green:255.0 blue:255.0 alpha:1.0];
 }
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - controller
 
+- (void) setValidSizesOfScroller {
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    CGRect contentRect = CGRectZero;
+    for (UIView *view in self.scrollView.subviews) {
+        contentRect = CGRectUnion(contentRect, view.frame);
+    }
+    contentRect.size.height += OFFSET;
+    self.scrollView.contentSize = contentRect.size;
 }
-*/
+
+
+
 
 #pragma mark - RESTKit
 
@@ -107,6 +121,9 @@
     
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     [httpClient registerHTTPOperationClass:[AFHTTPRequestOperation class]];
+    
+    [self.indicatorActivity startAnimating];
+    
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         TFHpple *parser = [TFHpple hppleWithHTMLData:responseObject];
@@ -126,15 +143,17 @@
                     News *article = [News new];
                     article.textOfNews = [[elem firstChild] content];
                     [news addObject:article];
+                    break;
                 }
             }
+
         }
         [self appendAllTexts:news];
         self.textField.text = self.textOfArticle;
 
         [self.textField sizeToFit];
-        
-        
+        [self setValidSizesOfScroller];
+        [self.indicatorActivity stopAnimating];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
     }];
