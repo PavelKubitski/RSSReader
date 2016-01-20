@@ -10,6 +10,8 @@
 #import <RestKit/RestKit.h>
 #import "RKArticleList.h"
 #import "RKArticle.h"
+#import "RKCDArticle.h"
+#import "RKCDArticleList.h"
 
 @interface TableViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 

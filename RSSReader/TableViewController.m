@@ -10,6 +10,7 @@
 #import "ArticleViewController.h"
 #import "CustomTableViewCell.h"
 
+
 @interface TableViewController ()
 
 @end
@@ -96,7 +97,7 @@
     [objectManager setRequestSerializationMIMEType:RKMIMETypeTextXML];
     
     RKResponseDescriptor *articleListResponseDescriptor =
-    [RKResponseDescriptor responseDescriptorWithMapping:[RKArticleList responseMapping]
+    [RKResponseDescriptor responseDescriptorWithMapping:[RKCDArticleList responseMapping]
                                                  method:RKRequestMethodGET
                                             pathPattern:@"/feed"
                                                 keyPath:@"rss.channel"
@@ -109,8 +110,8 @@
     // Enable Activity Indicator Spinner
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
     
-    [self performSelector:nil];
-    [self respondsToSelector:nil];
+
+
     
 }
 
@@ -125,7 +126,7 @@
          self.articleList = (RKArticleList*)[mappingResult.array firstObject];
 
          dispatch_async(dispatch_get_main_queue(), ^{
-             self.title = self.articleList.title;
+             self.navigationItem.title = self.articleList.title;
              [self.tableView reloadData];
          });
          

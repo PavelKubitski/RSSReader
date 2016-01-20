@@ -30,7 +30,7 @@
     
 
     
-    self.title = @"Onliner RSS Reader";
+    self.navigationItem.title = @"Onliner RSS Reader";
 
     self.links = [NSArray arrayWithObjects:@"http://people.onliner.by", @"http://auto.onliner.by", @"http://tech.onliner.by", @"http://realt.onliner.by", nil];
     self.titleOfSection = [NSArray arrayWithObjects:@"People", @"Auto", @"Tech", @"Realt", nil];

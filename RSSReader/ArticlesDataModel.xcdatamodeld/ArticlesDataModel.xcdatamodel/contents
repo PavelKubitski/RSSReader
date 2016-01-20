@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="14F27" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="RKCDArticle" representedClassName="RKCDArticle" syncable="YES">
+        <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="description_article" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="link" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pubDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="owner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RKCDArticleList" inverseName="articles" inverseEntity="RKCDArticleList" syncable="YES"/>
+    </entity>
+    <entity name="RKCDArticleList" representedClassName="RKCDArticleList" syncable="YES">
+        <attribute name="article_description" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="link" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="articles" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="RKCDArticle" inverseName="owner" inverseEntity="RKCDArticle" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="RKCDArticleList" positionX="-1089" positionY="-18" width="128" height="103"/>
+        <element name="RKCDArticle" positionX="-911" positionY="0" width="128" height="148"/>
+    </elements>
+</model>

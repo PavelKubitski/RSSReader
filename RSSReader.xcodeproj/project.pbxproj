@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		57AFBED11C4FCE0500A1CAAF /* ArticlesDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 57AFBECF1C4FCE0500A1CAAF /* ArticlesDataModel.xcdatamodeld */; };
+		57AFBED41C4FD17400A1CAAF /* RKCDArticleList.m in Sources */ = {isa = PBXBuildFile; fileRef = 57AFBED31C4FD17400A1CAAF /* RKCDArticleList.m */; };
+		57AFBED71C4FD17500A1CAAF /* RKCDArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 57AFBED61C4FD17500A1CAAF /* RKCDArticle.m */; };
 		57BED8C01C47B83F004BD722 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 57BED8BF1C47B83F004BD722 /* main.m */; };
 		57BED8C31C47B83F004BD722 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 57BED8C21C47B83F004BD722 /* AppDelegate.m */; };
 		57BED8C61C47B83F004BD722 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57BED8C51C47B83F004BD722 /* TableViewController.m */; };
@@ -37,6 +40,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		57AFBED01C4FCE0500A1CAAF /* ArticlesDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ArticlesDataModel.xcdatamodel; sourceTree = "<group>"; };
+		57AFBED21C4FD17400A1CAAF /* RKCDArticleList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKCDArticleList.h; sourceTree = "<group>"; };
+		57AFBED31C4FD17400A1CAAF /* RKCDArticleList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKCDArticleList.m; sourceTree = "<group>"; };
+		57AFBED51C4FD17500A1CAAF /* RKCDArticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKCDArticle.h; sourceTree = "<group>"; };
+		57AFBED61C4FD17500A1CAAF /* RKCDArticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKCDArticle.m; sourceTree = "<group>"; };
 		57BED8BA1C47B83F004BD722 /* RSSReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSSReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57BED8BE1C47B83F004BD722 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		57BED8BF1C47B83F004BD722 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -100,6 +108,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		57AFBED81C4FD18400A1CAAF /* RKCDObjects */ = {
+			isa = PBXGroup;
+			children = (
+				57AFBED51C4FD17500A1CAAF /* RKCDArticle.h */,
+				57AFBED61C4FD17500A1CAAF /* RKCDArticle.m */,
+				57AFBED21C4FD17400A1CAAF /* RKCDArticleList.h */,
+				57AFBED31C4FD17400A1CAAF /* RKCDArticleList.m */,
+			);
+			name = RKCDObjects;
+			sourceTree = "<group>";
+		};
 		57BED8B11C47B83F004BD722 = {
 			isa = PBXGroup;
 			children = (
@@ -129,6 +148,7 @@
 				57BED8E31C47BB88004BD722 /* TableViewController */,
 				57BED8F81C4AA9DD004BD722 /* ArticleViewController */,
 				57BED8EA1C47BC52004BD722 /* RKObjects */,
+				57AFBED81C4FD18400A1CAAF /* RKCDObjects */,
 				57BED9011C4BAE34004BD722 /* News */,
 				57FDD0441C4D756C00E473E7 /* CollectionViewCell */,
 				57BED9051C4BE0AE004BD722 /* CustomTableViewCell */,
@@ -136,6 +156,7 @@
 				57BED8CA1C47B83F004BD722 /* Images.xcassets */,
 				57BED8CC1C47B83F004BD722 /* LaunchScreen.xib */,
 				57BED8BD1C47B83F004BD722 /* Supporting Files */,
+				57AFBECF1C4FCE0500A1CAAF /* ArticlesDataModel.xcdatamodeld */,
 			);
 			path = RSSReader;
 			sourceTree = "<group>";
@@ -398,10 +419,13 @@
 				57BED8E91C47BC3B004BD722 /* RKArticle.m in Sources */,
 				57BED8C31C47B83F004BD722 /* AppDelegate.m in Sources */,
 				57BED8FB1C4AAF1C004BD722 /* RKNews.m in Sources */,
+				57AFBED71C4FD17500A1CAAF /* RKCDArticle.m in Sources */,
 				57BED8C01C47B83F004BD722 /* main.m in Sources */,
 				57BED9041C4BE0A8004BD722 /* CustomTableViewCell.m in Sources */,
+				57AFBED41C4FD17400A1CAAF /* RKCDArticleList.m in Sources */,
 				57BED8E61C47BC26004BD722 /* RKArticleList.m in Sources */,
 				57BED9001C4BAE21004BD722 /* News.m in Sources */,
+				57AFBED11C4FCE0500A1CAAF /* ArticlesDataModel.xcdatamodeld in Sources */,
 				57FDD03F1C4D699100E473E7 /* CollectionViewController.m in Sources */,
 				57FDD0431C4D755C00E473E7 /* CollectionViewCell.m in Sources */,
 				57BED8F71C4AA9CE004BD722 /* ArticleViewController.m in Sources */,
@@ -643,6 +667,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		57AFBECF1C4FCE0500A1CAAF /* ArticlesDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				57AFBED01C4FCE0500A1CAAF /* ArticlesDataModel.xcdatamodel */,
+			);
+			currentVersion = 57AFBED01C4FCE0500A1CAAF /* ArticlesDataModel.xcdatamodel */;
+			path = ArticlesDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 57BED8B21C47B83F004BD722 /* Project object */;
 }
