@@ -97,7 +97,7 @@
     [objectManager setRequestSerializationMIMEType:RKMIMETypeTextXML];
     
     RKResponseDescriptor *articleListResponseDescriptor =
-    [RKResponseDescriptor responseDescriptorWithMapping:[RKCDArticleList responseMapping]
+    [RKResponseDescriptor responseDescriptorWithMapping:[RKArticleList responseMapping]
                                                  method:RKRequestMethodGET
                                             pathPattern:@"/feed"
                                                 keyPath:@"rss.channel"

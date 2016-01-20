@@ -22,6 +22,6 @@
 @property (nonatomic, retain) NSString * imageURL;
 @property (nonatomic, retain) RKCDArticleList *owner;
 
-+ (RKObjectMapping *) responseMapping
++ (RKObjectMapping *) responseMapping;
 
 @end
