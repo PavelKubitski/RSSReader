@@ -21,6 +21,8 @@
 		57BED8FD1C4B9B65004BD722 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 57BED8FC1C4B9B65004BD722 /* libxml2.dylib */; };
 		57BED9001C4BAE21004BD722 /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = 57BED8FF1C4BAE21004BD722 /* News.m */; };
 		57BED9041C4BE0A8004BD722 /* CustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 57BED9031C4BE0A8004BD722 /* CustomTableViewCell.m */; };
+		57FDD03F1C4D699100E473E7 /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FDD03E1C4D699100E473E7 /* CollectionViewController.m */; };
+		57FDD0431C4D755C00E473E7 /* CollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FDD0421C4D755C00E473E7 /* CollectionViewCell.m */; };
 		CDB472B72EC06C128948C3C5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BDAD74EF08CC8A54B91B021D /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +63,10 @@
 		57BED8FF1C4BAE21004BD722 /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = News.m; sourceTree = "<group>"; };
 		57BED9021C4BE0A8004BD722 /* CustomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTableViewCell.h; sourceTree = "<group>"; };
 		57BED9031C4BE0A8004BD722 /* CustomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableViewCell.m; sourceTree = "<group>"; };
+		57FDD03D1C4D699100E473E7 /* CollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewController.h; sourceTree = "<group>"; };
+		57FDD03E1C4D699100E473E7 /* CollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewController.m; sourceTree = "<group>"; };
+		57FDD0411C4D755C00E473E7 /* CollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewCell.h; sourceTree = "<group>"; };
+		57FDD0421C4D755C00E473E7 /* CollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewCell.m; sourceTree = "<group>"; };
 		67D8CF257D69B438325214DE /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		BDAD74EF08CC8A54B91B021D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6FF1862A1BF39EEA81EB66B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -119,10 +125,12 @@
 			children = (
 				57BED8C11C47B83F004BD722 /* AppDelegate.h */,
 				57BED8C21C47B83F004BD722 /* AppDelegate.m */,
+				57FDD0401C4D699E00E473E7 /* CollectionViewController */,
 				57BED8E31C47BB88004BD722 /* TableViewController */,
 				57BED8F81C4AA9DD004BD722 /* ArticleViewController */,
 				57BED8EA1C47BC52004BD722 /* RKObjects */,
 				57BED9011C4BAE34004BD722 /* News */,
+				57FDD0441C4D756C00E473E7 /* CollectionViewCell */,
 				57BED9051C4BE0AE004BD722 /* CustomTableViewCell */,
 				57BED8C71C47B83F004BD722 /* Main.storyboard */,
 				57BED8CA1C47B83F004BD722 /* Images.xcassets */,
@@ -206,6 +214,24 @@
 				57BED9031C4BE0A8004BD722 /* CustomTableViewCell.m */,
 			);
 			name = CustomTableViewCell;
+			sourceTree = "<group>";
+		};
+		57FDD0401C4D699E00E473E7 /* CollectionViewController */ = {
+			isa = PBXGroup;
+			children = (
+				57FDD03D1C4D699100E473E7 /* CollectionViewController.h */,
+				57FDD03E1C4D699100E473E7 /* CollectionViewController.m */,
+			);
+			name = CollectionViewController;
+			sourceTree = "<group>";
+		};
+		57FDD0441C4D756C00E473E7 /* CollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				57FDD0411C4D755C00E473E7 /* CollectionViewCell.h */,
+				57FDD0421C4D755C00E473E7 /* CollectionViewCell.m */,
+			);
+			name = CollectionViewCell;
 			sourceTree = "<group>";
 		};
 		8958DFE81E120443DB992262 /* Pods */ = {
@@ -376,6 +402,8 @@
 				57BED9041C4BE0A8004BD722 /* CustomTableViewCell.m in Sources */,
 				57BED8E61C47BC26004BD722 /* RKArticleList.m in Sources */,
 				57BED9001C4BAE21004BD722 /* News.m in Sources */,
+				57FDD03F1C4D699100E473E7 /* CollectionViewController.m in Sources */,
+				57FDD0431C4D755C00E473E7 /* CollectionViewCell.m in Sources */,
 				57BED8F71C4AA9CE004BD722 /* ArticleViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

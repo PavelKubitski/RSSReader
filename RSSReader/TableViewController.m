@@ -20,7 +20,6 @@
     [super viewDidLoad];
     
     self.activityIndicator.center = self.view.center;
-    
     [self prepareForNetwork];
     
     
@@ -28,20 +27,13 @@
     dispatch_async(queue, ^{
         [self requestData];
     });
-    
-    
 
 
-    
-    
-    
     // Do any additional setup after loading the view, typically from a nib.
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-//    CGRect frameOfView = self.view.frame;
-    
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
 
 }
 
@@ -98,7 +90,7 @@
 #pragma mark - RESTKit
 
 - (void) prepareForNetwork {
-    NSURL *baseURL = [NSURL URLWithString:@"http://tech.onliner.by"];
+    NSURL *baseURL = [NSURL URLWithString:self.baseURL];
     RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:baseURL];
 
     [objectManager setRequestSerializationMIMEType:RKMIMETypeTextXML];
@@ -112,14 +104,15 @@
      ];
     
     [objectManager addResponseDescriptor:articleListResponseDescriptor];
+    [RKObjectManager setSharedManager:objectManager];
     
     // Enable Activity Indicator Spinner
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
     
+    [self performSelector:nil];
+    [self respondsToSelector:nil];
+    
 }
-
-
-
 
 - (void)requestData {
     NSString *requestPath = @"/feed";
@@ -130,10 +123,9 @@
      success: ^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
          
          self.articleList = (RKArticleList*)[mappingResult.array firstObject];
-         
-
 
          dispatch_async(dispatch_get_main_queue(), ^{
+             self.title = self.articleList.title;
              [self.tableView reloadData];
          });
          

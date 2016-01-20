@@ -17,5 +17,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (strong, nonatomic) RKArticleList *articleList;
+@property (strong, nonatomic) NSString *baseURL;
+
 @end
 

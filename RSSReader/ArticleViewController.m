@@ -21,7 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.textField.scrollEnabled = NO;
+    self.textView.scrollEnabled = NO;
     [self.titleLabel setFont:[UIFont boldSystemFontOfSize:20]];
     self.titleLabel.text = self.article.title;
     self.imageView.image =[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.article.imageURL]]];
@@ -99,7 +99,7 @@
      success: ^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
          
 
-         RKNews *news = (RKNews*)[mappingResult.array firstObject];
+//         RKNews *news = (RKNews*)[mappingResult.array firstObject];
 
          
      }
@@ -149,9 +149,9 @@
 
         }
         [self appendAllTexts:news];
-        self.textField.text = self.textOfArticle;
+        self.textView.text = self.textOfArticle;
 
-        [self.textField sizeToFit];
+        [self.textView sizeToFit];
         [self setValidSizesOfScroller];
         [self.indicatorActivity stopAnimating];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
