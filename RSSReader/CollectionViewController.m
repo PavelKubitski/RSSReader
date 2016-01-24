@@ -25,6 +25,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    NSURL *baseURL = [NSURL URLWithString:@"http://www.onliner.by/"];
+    self.manager = [RKObjectManager managerWithBaseURL:baseURL];
+    [self createCDStack];
+    
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -70,7 +74,6 @@
     static NSString * const reuseIdentifier = @"CollectionViewCell";
     CollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
 
-
     cell.titleLabel.text = [self.titleOfSection objectAtIndex:indexPath.row];
     cell.titleLabel.textColor = [UIColor whiteColor];
     cell.titleLabel.adjustsFontSizeToFitWidth = YES;
@@ -88,10 +91,39 @@
     TableViewController *sectionVC = [self.storyboard instantiateViewControllerWithIdentifier:@"TableViewController"];
     [self.navigationController pushViewController:sectionVC animated:YES];
     sectionVC.baseURL = [self.links objectAtIndex:indexPath.row];
+    sectionVC.manager = self.manager;
+    sectionVC.moStore = self.manager.managedObjectStore;
 }
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
     // TODO: Deselect item
 }
+
+
+- (void)createCDStack {
+    // Initialize managed object model from bundle
+    
+    NSManagedObjectModel *managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
+    // Initialize managed object store
+    RKManagedObjectStore *managedObjectStore = [[RKManagedObjectStore alloc] initWithManagedObjectModel:managedObjectModel];
+    self.manager.managedObjectStore = managedObjectStore;
+    self.moStore = managedObjectStore;
+    // Complete Core Data stack initialization
+    [managedObjectStore createPersistentStoreCoordinator];
+    NSString *storePath = [RKApplicationDataDirectory() stringByAppendingPathComponent:@"ArticlesDB.sqlite"];
+    NSString *seedPath = [[NSBundle mainBundle] pathForResource:@"RKSeedDatabase" ofType:@"sqlite"];
+    NSError *error;
+    NSPersistentStore *persistentStore = [managedObjectStore addSQLitePersistentStoreAtPath:storePath fromSeedDatabaseAtPath:seedPath withConfiguration:nil options:nil error:&error];
+    NSAssert(persistentStore, @"Failed to add persistent store with error: %@", error);
+    
+    // Create the managed object contexts
+    [managedObjectStore createManagedObjectContexts];
+    
+    // Configure a managed object cache to ensure we do not create duplicate objects
+    managedObjectStore.managedObjectCache = [[RKInMemoryManagedObjectCache alloc] initWithManagedObjectContext:managedObjectStore.persistentStoreManagedObjectContext];
+}
+
+
+
 
 
 /*

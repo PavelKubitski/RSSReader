@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5704BDE61C52990C00CE629D /* RKCDArticleList.m in Sources */ = {isa = PBXBuildFile; fileRef = 5704BDE51C52990C00CE629D /* RKCDArticleList.m */; };
 		57AFBED11C4FCE0500A1CAAF /* ArticlesDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 57AFBECF1C4FCE0500A1CAAF /* ArticlesDataModel.xcdatamodeld */; };
-		57AFBED41C4FD17400A1CAAF /* RKCDArticleList.m in Sources */ = {isa = PBXBuildFile; fileRef = 57AFBED31C4FD17400A1CAAF /* RKCDArticleList.m */; };
 		57AFBED71C4FD17500A1CAAF /* RKCDArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 57AFBED61C4FD17500A1CAAF /* RKCDArticle.m */; };
 		57BED8C01C47B83F004BD722 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 57BED8BF1C47B83F004BD722 /* main.m */; };
 		57BED8C31C47B83F004BD722 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 57BED8C21C47B83F004BD722 /* AppDelegate.m */; };
@@ -40,9 +40,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5704BDE41C52990C00CE629D /* RKCDArticleList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKCDArticleList.h; sourceTree = "<group>"; };
+		5704BDE51C52990C00CE629D /* RKCDArticleList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKCDArticleList.m; sourceTree = "<group>"; };
 		57AFBED01C4FCE0500A1CAAF /* ArticlesDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ArticlesDataModel.xcdatamodel; sourceTree = "<group>"; };
-		57AFBED21C4FD17400A1CAAF /* RKCDArticleList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKCDArticleList.h; sourceTree = "<group>"; };
-		57AFBED31C4FD17400A1CAAF /* RKCDArticleList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKCDArticleList.m; sourceTree = "<group>"; };
 		57AFBED51C4FD17500A1CAAF /* RKCDArticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKCDArticle.h; sourceTree = "<group>"; };
 		57AFBED61C4FD17500A1CAAF /* RKCDArticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKCDArticle.m; sourceTree = "<group>"; };
 		57BED8BA1C47B83F004BD722 /* RSSReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSSReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,8 +113,8 @@
 			children = (
 				57AFBED51C4FD17500A1CAAF /* RKCDArticle.h */,
 				57AFBED61C4FD17500A1CAAF /* RKCDArticle.m */,
-				57AFBED21C4FD17400A1CAAF /* RKCDArticleList.h */,
-				57AFBED31C4FD17400A1CAAF /* RKCDArticleList.m */,
+				5704BDE41C52990C00CE629D /* RKCDArticleList.h */,
+				5704BDE51C52990C00CE629D /* RKCDArticleList.m */,
 			);
 			name = RKCDObjects;
 			sourceTree = "<group>";
@@ -422,12 +422,12 @@
 				57AFBED71C4FD17500A1CAAF /* RKCDArticle.m in Sources */,
 				57BED8C01C47B83F004BD722 /* main.m in Sources */,
 				57BED9041C4BE0A8004BD722 /* CustomTableViewCell.m in Sources */,
-				57AFBED41C4FD17400A1CAAF /* RKCDArticleList.m in Sources */,
 				57BED8E61C47BC26004BD722 /* RKArticleList.m in Sources */,
 				57BED9001C4BAE21004BD722 /* News.m in Sources */,
 				57AFBED11C4FCE0500A1CAAF /* ArticlesDataModel.xcdatamodeld in Sources */,
 				57FDD03F1C4D699100E473E7 /* CollectionViewController.m in Sources */,
 				57FDD0431C4D755C00E473E7 /* CollectionViewCell.m in Sources */,
+				5704BDE61C52990C00CE629D /* RKCDArticleList.m in Sources */,
 				57BED8F71C4AA9CE004BD722 /* ArticleViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

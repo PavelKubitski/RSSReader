@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
+#import <RestKit/RestKit.h>
 
 @interface CollectionViewController : UICollectionViewController <UICollectionViewDelegateFlowLayout>
+
+@property (strong, nonatomic) RKObjectManager *manager;
+@property (strong, nonatomic) RKManagedObjectStore * moStore;
 
 @end

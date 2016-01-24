@@ -12,11 +12,12 @@
     <entity name="RKCDArticleList" representedClassName="RKCDArticleList" syncable="YES">
         <attribute name="article_description" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="link" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pubDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="articles" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="RKCDArticle" inverseName="owner" inverseEntity="RKCDArticle" syncable="YES"/>
     </entity>
     <elements>
-        <element name="RKCDArticleList" positionX="-1089" positionY="-18" width="128" height="103"/>
         <element name="RKCDArticle" positionX="-911" positionY="0" width="128" height="148"/>
+        <element name="RKCDArticleList" positionX="-1089" positionY="-18" width="128" height="120"/>
     </elements>
 </model>

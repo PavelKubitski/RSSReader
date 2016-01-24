@@ -21,16 +21,29 @@
     [super viewDidLoad];
     
     self.activityIndicator.center = self.view.center;
+    
+    
+    UIBarButtonItem* refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
+                                                                                   target:self
+                                                                                   action:@selector(refreshButtonAction:)];
+
+    [self.navigationItem setRightBarButtonItem:refreshButton];
+
     [self prepareForNetwork];
-    
-    
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_async(queue, ^{
-        [self requestData];
-    });
 
+    [self.activityIndicator startAnimating];
+    [self fetchArticlesFromContext:self.baseURL];
+    if ([self.articles count] == 0) {
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        dispatch_async(queue, ^{
+            [self requestData];
+        });
+    } else {
+        self.navigationItem.title = self.articleList.title;
+        [self.activityIndicator stopAnimating];
+        [self.tableView reloadData];
+    }
 
-    // Do any additional setup after loading the view, typically from a nib.
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -43,93 +56,65 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Actions
 
-#pragma mark - Table View
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+- (void) refreshButtonAction:(UIBarButtonItem*) sender {
+    [self deleteObjectsFromPath:self.baseURL];
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(queue, ^{
+        [self requestData];
+    });
 }
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
-    return [self.articleList.articles count];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"CustomTableViewCell";
-    
-    CustomTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[CustomTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
-    }
-    
-    //    cell.textLabel.adjustsFontSizeToFitWidth = YES;
-    NSString *imageUrl = [((RKArticle*)[self.articleList.articles objectAtIndex:indexPath.row]) imageURL];
-    
-
-    
-    cell.image.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageUrl]]];
-
-    
-    cell.titleLabel.text = [((RKArticle*)[self.articleList.articles objectAtIndex:indexPath.row]) title];
-
-    return cell;
-}
-
-#pragma mark - UITableViewDelegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-  
-    RKArticle *article = [self.articleList.articles objectAtIndex:indexPath.row];
-    ArticleViewController *articleVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ArticleViewController"];
-    [self.navigationController pushViewController:articleVC animated:YES];
-    articleVC.article = article;
-}
-
 
 #pragma mark - RESTKit
 
 - (void) prepareForNetwork {
-    NSURL *baseURL = [NSURL URLWithString:self.baseURL];
-    RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:baseURL];
 
-    [objectManager setRequestSerializationMIMEType:RKMIMETypeTextXML];
+    NSURL *baseURL = [NSURL URLWithString:self.baseURL];
+    self.manager = [RKObjectManager managerWithBaseURL:baseURL];
+    
+
+    
+    if (self.manager.managedObjectStore == nil) {
+        self.manager.managedObjectStore = self.moStore;
+    }
+    
+    [self.manager setRequestSerializationMIMEType:RKMIMETypeTextXML];
     
     RKResponseDescriptor *articleListResponseDescriptor =
-    [RKResponseDescriptor responseDescriptorWithMapping:[RKArticleList responseMapping]
+    [RKResponseDescriptor responseDescriptorWithMapping:[RKCDArticleList responseMapping]
                                                  method:RKRequestMethodGET
                                             pathPattern:@"/feed"
                                                 keyPath:@"rss.channel"
                                             statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)
      ];
     
-    [objectManager addResponseDescriptor:articleListResponseDescriptor];
-    [RKObjectManager setSharedManager:objectManager];
+    [self.manager addResponseDescriptor:articleListResponseDescriptor];
+    [RKObjectManager setSharedManager:self.manager];
     
     // Enable Activity Indicator Spinner
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
     
-
+    
 
     
 }
 
 - (void)requestData {
     NSString *requestPath = @"/feed";
-    [self.activityIndicator startAnimating];
+    
     [[RKObjectManager sharedManager]
      getObjectsAtPath:requestPath
      parameters:nil
      success: ^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
          
-         self.articleList = (RKArticleList*)[mappingResult.array firstObject];
 
+         [self fetchArticlesFromContext:self.baseURL];
          dispatch_async(dispatch_get_main_queue(), ^{
              self.navigationItem.title = self.articleList.title;
              [self.tableView reloadData];
          });
-         
+     
          
          [self.activityIndicator stopAnimating];
      }
@@ -140,6 +125,80 @@
 }
 
 
+- (void)fetchArticlesFromContext:(NSString*)path {
+    
+    NSString *normolizedPath = [NSString stringWithFormat:@"%@%@", path, @"/"];
+    
+    NSManagedObjectContext *context = self.manager.managedObjectStore.persistentStoreManagedObjectContext;
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"RKCDArticleList"];
+    
+    NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:@"pubDate" ascending:YES];
+    fetchRequest.sortDescriptors = @[descriptor];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"link == %@", normolizedPath];
+    fetchRequest.predicate = predicate;
+    
+    NSError *error = nil;
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+    
+    self.articleList = [fetchedObjects firstObject];
+    self.articles = [NSArray arrayWithArray:[self.articleList.articles allObjects]];
+    if (self.articleList) {
+        NSLog(@"OKKKK!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
+        NSLog(@"objects fetched %lu", (unsigned long)[self.articleList.articles count]);
+    }
+}
+
+- (void) deleteObjectsFromPath:(NSString *) path {
+    [self fetchArticlesFromContext:path];
+    [self.manager.managedObjectStore.persistentStoreManagedObjectContext deleteObject:self.articleList];
+    NSError *error;
+    [self.manager.managedObjectStore.persistentStoreManagedObjectContext save:&error];
+}
 
 
+
+
+
+
+
+
+#pragma mark - Table View
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    return [self.articles count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *CellIdentifier = @"CustomTableViewCell";
+
+    CustomTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[CustomTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+    }
+    
+    NSString *imageUrl = [((RKCDArticle*)[self.articles objectAtIndex:indexPath.row]) imageURL];
+    
+    cell.image.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageUrl]]];
+    
+    cell.titleLabel.text = [((RKCDArticle*)[self.articles objectAtIndex:indexPath.row]) title];
+    
+    return cell;
+}
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    RKCDArticle *article = [self.articles objectAtIndex:indexPath.row];
+    ArticleViewController *articleVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ArticleViewController"];
+    [self.navigationController pushViewController:articleVC animated:YES];
+        articleVC.article = article;
+}
 @end

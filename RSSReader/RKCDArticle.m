@@ -20,15 +20,15 @@
 @dynamic imageURL;
 @dynamic owner;
 
-+ (RKObjectMapping *) responseMapping {
++ (RKEntityMapping *) responseMapping {
     
     
     
-    RKObjectMapping *articleMapping = [RKObjectMapping mappingForClass:[RKCDArticle class]];
+    RKEntityMapping *articleMapping = [RKEntityMapping mappingForEntityForName:NSStringFromClass([RKCDArticle class]) inManagedObjectStore:[RKObjectManager sharedManager].managedObjectStore];
     
     
     
-    
+
     [articleMapping addAttributeMappingsFromDictionary:@{@"title.text" : @"title",
                                                          @"link.text" : @"link",
                                                          @"pubDate.text" : @"pubDate",

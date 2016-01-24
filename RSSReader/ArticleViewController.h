@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RKArticle.h"
+#import "RKCDArticle.h"
 #import "RKNews.h"
 
 @interface ArticleViewController : UIViewController
@@ -18,6 +18,6 @@
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicatorActivity;
 
 
-@property (strong, nonatomic) RKArticle *article;
+@property (strong, nonatomic) RKCDArticle *article;
 @property (strong, nonatomic) NSString *textOfArticle;
 @end
