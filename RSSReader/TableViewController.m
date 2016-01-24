@@ -46,11 +46,6 @@
 
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -108,7 +103,6 @@
      parameters:nil
      success: ^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
          
-
          [self fetchArticlesFromContext:self.baseURL];
          dispatch_async(dispatch_get_main_queue(), ^{
              self.navigationItem.title = self.articleList.title;
@@ -124,6 +118,8 @@
      ];
 }
 
+
+#pragma mark - Core Data
 
 - (void)fetchArticlesFromContext:(NSString*)path {
     
@@ -143,10 +139,7 @@
     
     self.articleList = [fetchedObjects firstObject];
     self.articles = [NSArray arrayWithArray:[self.articleList.articles allObjects]];
-    if (self.articleList) {
-        NSLog(@"OKKKK!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
-        NSLog(@"objects fetched %lu", (unsigned long)[self.articleList.articles count]);
-    }
+
 }
 
 - (void) deleteObjectsFromPath:(NSString *) path {

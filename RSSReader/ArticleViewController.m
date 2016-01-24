@@ -109,6 +109,8 @@
      ];
 }
 
+#pragma mark - AFNetworking
+
 - (void) requestDataUsingAFNetworking {
     NSString *baseUrlSting = @"http://tech.onliner.by";
     
@@ -170,7 +172,7 @@
 
     }
     self.textOfArticle = [NSString stringWithString:textOfNew];
-    
+
 }
 
 

@@ -27,12 +27,8 @@
     
     NSURL *baseURL = [NSURL URLWithString:@"http://www.onliner.by/"];
     self.manager = [RKObjectManager managerWithBaseURL:baseURL];
+    
     [self createCDStack];
-    
-    // Uncomment the following line to preserve selection between presentations
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-
     
     self.navigationItem.title = @"Onliner RSS Reader";
 
@@ -67,7 +63,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
 
-    return 4;
+    return [self.titleOfSection count];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -100,14 +96,14 @@
 
 
 - (void)createCDStack {
-    // Initialize managed object model from bundle
+
     
     NSManagedObjectModel *managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
-    // Initialize managed object store
+
     RKManagedObjectStore *managedObjectStore = [[RKManagedObjectStore alloc] initWithManagedObjectModel:managedObjectModel];
     self.manager.managedObjectStore = managedObjectStore;
     self.moStore = managedObjectStore;
-    // Complete Core Data stack initialization
+
     [managedObjectStore createPersistentStoreCoordinator];
     NSString *storePath = [RKApplicationDataDirectory() stringByAppendingPathComponent:@"ArticlesDB.sqlite"];
     NSString *seedPath = [[NSBundle mainBundle] pathForResource:@"RKSeedDatabase" ofType:@"sqlite"];
@@ -115,10 +111,9 @@
     NSPersistentStore *persistentStore = [managedObjectStore addSQLitePersistentStoreAtPath:storePath fromSeedDatabaseAtPath:seedPath withConfiguration:nil options:nil error:&error];
     NSAssert(persistentStore, @"Failed to add persistent store with error: %@", error);
     
-    // Create the managed object contexts
+
     [managedObjectStore createManagedObjectContexts];
     
-    // Configure a managed object cache to ensure we do not create duplicate objects
     managedObjectStore.managedObjectCache = [[RKInMemoryManagedObjectCache alloc] initWithManagedObjectContext:managedObjectStore.persistentStoreManagedObjectContext];
 }
 
