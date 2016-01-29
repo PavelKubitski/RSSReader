@@ -21,7 +21,6 @@
 		57BED8E91C47BC3B004BD722 /* RKArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 57BED8E81C47BC3B004BD722 /* RKArticle.m */; };
 		57BED8F71C4AA9CE004BD722 /* ArticleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57BED8F61C4AA9CE004BD722 /* ArticleViewController.m */; };
 		57BED8FB1C4AAF1C004BD722 /* RKNews.m in Sources */ = {isa = PBXBuildFile; fileRef = 57BED8FA1C4AAF1C004BD722 /* RKNews.m */; };
-		57BED8FD1C4B9B65004BD722 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 57BED8FC1C4B9B65004BD722 /* libxml2.dylib */; };
 		57BED9001C4BAE21004BD722 /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = 57BED8FF1C4BAE21004BD722 /* News.m */; };
 		57BED9041C4BE0A8004BD722 /* CustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 57BED9031C4BE0A8004BD722 /* CustomTableViewCell.m */; };
 		57FDD03F1C4D699100E473E7 /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FDD03E1C4D699100E473E7 /* CollectionViewController.m */; };
@@ -66,7 +65,6 @@
 		57BED8F61C4AA9CE004BD722 /* ArticleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleViewController.m; sourceTree = "<group>"; };
 		57BED8F91C4AAF1C004BD722 /* RKNews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKNews.h; sourceTree = "<group>"; };
 		57BED8FA1C4AAF1C004BD722 /* RKNews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKNews.m; sourceTree = "<group>"; };
-		57BED8FC1C4B9B65004BD722 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = ../libxml2.dylib; sourceTree = "<group>"; };
 		57BED8FE1C4BAE21004BD722 /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = News.h; sourceTree = "<group>"; };
 		57BED8FF1C4BAE21004BD722 /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = News.m; sourceTree = "<group>"; };
 		57BED9021C4BE0A8004BD722 /* CustomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTableViewCell.h; sourceTree = "<group>"; };
@@ -86,7 +84,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDB472B72EC06C128948C3C5 /* libPods.a in Frameworks */,
-				57BED8FD1C4B9B65004BD722 /* libxml2.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,7 +161,6 @@
 		57BED8BD1C47B83F004BD722 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				57BED8FC1C4B9B65004BD722 /* libxml2.dylib */,
 				57BED8BE1C47B83F004BD722 /* Info.plist */,
 				57BED8BF1C47B83F004BD722 /* main.m */,
 			);
